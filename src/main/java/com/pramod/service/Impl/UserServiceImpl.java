@@ -11,6 +11,11 @@ public class UserServiceImpl implements UserService {
 
     UserRepository userRepository;
 
+
+    UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public User getUserById(Long id) {
         return null;
@@ -18,11 +23,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void debit(Long id, Double amount) {
-        return userRepository.findById(id).orElseThrow("user not found");
+        User user = userRepository.findById(id).orElseThrow();
+        user.setBalance(amount);
+        userRepository.save(user);
+
     }
 
     @Override
     public void credit(Long id, Double amount) {
-        return 0L;
+        User user = userRepository.findById(id).orElseThrow();
+
+        user.setBalance(amount);
+        userRepository.save(user);
     }
+
+    @Override
+    public User createUser(User user) {
+//        User res = userRepository.findById(user.getId()).orElseThrow();
+//        if(res != null){
+//            throw new Exception("user already present in database");
+//        }
+
+
+        return userRepository.save(user);
+    }
+
+    ;
 }

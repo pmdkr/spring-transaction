@@ -9,4 +9,6 @@ public interface UserService {
     void debit(Long id, Double amount);
 
     void credit(Long id, Double amount);
+
+    User createUser(User user);
 }
