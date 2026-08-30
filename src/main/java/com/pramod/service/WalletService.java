@@ -14,10 +14,10 @@ public class WalletService {
     }
 
     @Transactional
-    public void transfer(Long senderId, Long reciverId, Double amount) {
+    public void transfer(Long senderId, Long receiverId, Double amount) {
 
         userService.debit(senderId, amount);
-        userService.credit(reciverId, amount);
+        userService.credit(receiverId, amount);
 
 
     }
