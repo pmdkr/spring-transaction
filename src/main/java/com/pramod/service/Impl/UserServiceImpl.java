@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void debit(Long id, Double amount) {
         User user = userRepository.findById(id).orElseThrow();
-        user.setBalance(amount);
+        user.setBalance(user.getBalance()-amount);
         userRepository.save(user);
 
     }
@@ -33,7 +33,9 @@ public class UserServiceImpl implements UserService {
     public void credit(Long id, Double amount) {
         User user = userRepository.findById(id).orElseThrow();
 
-        user.setBalance(amount);
+        user.setBalance(user.getBalance()+amount);
+
+        int x=10/0;
         userRepository.save(user);
     }
 

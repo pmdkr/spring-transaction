@@ -1,6 +1,7 @@
 package com.pramod.service;
 
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,8 +13,8 @@ public class WalletService {
         this.userService = userService;
     }
 
+    @Transactional
     public void transfer(Long senderId, Long reciverId, Double amount) {
-
 
         userService.debit(senderId, amount);
         userService.credit(reciverId, amount);
